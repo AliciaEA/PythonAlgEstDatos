@@ -25,7 +25,7 @@ while respuesta != 5:  # Bucle para validar si la opción es válida
             nombre = input("Ingrese el nombre del estudiante: ")
            
             try: #Verificamos que la edad sea int
-                edad = edad = int(input("Ingrese la edad del estudiante: "))
+                edad = int(input("Ingrese la edad del estudiante: "))
             except ValueError:
                 print("Error: Debe ingresar un número entero. Intente nuevamente.") #Imprimiria que dio error
                 continue
@@ -43,41 +43,41 @@ while respuesta != 5:  # Bucle para validar si la opción es válida
             continue
         case 2:
             nombre_buscar= input("Ingrese el nombre a buscar: ").upper()
-            
-            for estudiante in lista_estudiantes:
-                if estudiante.nombre == nombre_buscar:
-                    print("Estudiante encontrado:")
-                    try: #Verificamos que la edad sea int
-                        calificacion = float(input(f"Agregue la calificacion al estudiante {estudiante.nombre}: "))
-                        estudiante.agregar_calificacion(calificacion)
-                        print("Calificacion agregada correctamente")
-                    except ValueError:
-                        print("Error: Debe ingresar un número entero. Intente nuevamente.") #Imprimiria que dio error
-                        continue
-                    encontrado = True
-                    
-                    break  # Salir del bucle una vez encontrado
-            if not encontrado:
+            estudiante = mod1.buscar_estudiante(nombre_buscar, lista_estudiantes)
+            if estudiante:
+                print("Estudiante encontrado:")
+                try: #Verificamos que la edad sea int
+                    calificacion = float(input(f"Agregue la calificacion al estudiante {estudiante.nombre}: "))
+                    estudiante.agregar_calificacion(calificacion)
+                    print("Calificacion agregada correctamente")
+                except ValueError:
+                    print("Error: Debe ingresar un número entero. Intente nuevamente.") #Imprimiria que dio error
+                    continue
+                
+            else:
                 print("Estudiante no encontrado.")
+                input()
+                continue
+                
+                input()
+            
             
             input()   
             
         case 3:
             nombre_buscar = input("Ingrese el nombre del estudiante a buscar: ").upper()
-            encontrado = False  # Bandera para verificar si se encontró el estudiante
             
-            for estudiante in lista_estudiantes:
-                if estudiante.nombre == nombre_buscar:
-                    print("Estudiante encontrado:")
-                    estudiante.mostrar_info()  # Llamar al método mostrar_info de la clase Estudiante
-                    encontrado = True
-                    
-                    break  # Salir del bucle una vez encontrado
-            
-            if not encontrado:
+            estudiante = mod1.buscar_estudiante(nombre_buscar, lista_estudiantes)
+            if estudiante:
+                print("Estudiante encontrado:")
+                estudiante.mostrar_info()  # Llamar al método mostrar_info de la clase Estudiante
+                input()
+            else:
                 print("Estudiante no encontrado.")
-            
-            input()   
+                input()
+                continue
+               
+
         case 4:
             if len(lista_estudiantes) == 0:  # Verificar si la lista está vacía
                 print("No hay estudiantes registrados.")
